@@ -170,7 +170,6 @@ def seed_books(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    # FIXME: remove assert False and replace "000X_YOUR_MOST_RECENT_MIGRATION_NAME" with the name of your most recent migration file in the dependencies list below before running this migration
     dependencies = [
         ("catalog", "0001_initial"),
     ]
