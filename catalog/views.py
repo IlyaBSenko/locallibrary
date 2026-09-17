@@ -14,7 +14,7 @@ def index(request):
     num_authors = Author.objects.count()
 
     # Challenge: count genres, and books containing a specific word
-    num_genres = Genre.objects.count()
+    num_genres = Genre.objects.filter(name__icontains='fiction').count()
     num_books_containing_word = Book.objects.filter(title__icontains='the').count()
 
     context = {
