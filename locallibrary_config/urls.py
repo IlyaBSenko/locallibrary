@@ -25,6 +25,12 @@ urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
 
+# locallibrary_config/urls.py
+# (after the existing catalog block)
+urlpatterns += [
+    path('chat/', include('chat.urls')),
+]
+
 from django.views.generic import RedirectView
 urlpatterns += [
     path('', RedirectView.as_view(url='catalog/')),
