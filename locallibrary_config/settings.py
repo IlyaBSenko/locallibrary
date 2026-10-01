@@ -30,8 +30,11 @@ SECRET_KEY = 'django-insecure-m+z$(zp(fjc2i%s3tjlfc=t_9_wl@a2a@kj&%g36g9lsc!6tq$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Application definition
 
@@ -80,11 +83,16 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
+# ask stewart about this
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": env.db(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
 }
 
 

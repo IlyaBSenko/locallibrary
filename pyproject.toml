@@ -20,3 +20,10 @@ cs347 = "cs347:main"
 [build-system]
 requires = ["uv_build>=0.12.9,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+prod = [
+    "daphne>=4.2.3",
+    "gunicorn>=26.2.0",
+    "psycopg[binary]>=3.3.6",
+]
