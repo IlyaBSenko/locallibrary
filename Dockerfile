@@ -28,4 +28,4 @@ RUN python manage.py collectstatic --noinput
 CMD ["sh", "-c", "python manage.py migrate --noinput && exec gunicorn --bind 0.0.0.0:8000 --workers 1 --threads 4 locallibrary_config.wsgi"]
 
 # For the Channels app, swap the last line for:
-CMD ["sh", "-c", "python manage.py migrate --noinput && exec gunicorn --bind 0.0.0.0:8000 --workers 1 --threads 4 YOUR_APP.wsgi"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && exec daphne -b 0.0.0.0 -p 8000 locallibrary_config.asgi:application"]
