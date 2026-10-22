@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 from .models import Book, Author, BookInstance, Genre
 
 
@@ -28,15 +29,17 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
-from django.views import generic
 
 class BookListView(generic.ListView):
     model = Book
     paginate_by = 10
+    # Avoids one extra query per book when templates loop over book.bookauthor_set
+    queryset = Book.objects.prefetch_related('bookauthor_set__author')
 
 
 class BookDetailView(generic.DetailView):
     model = Book
+    queryset = Book.objects.prefetch_related('bookauthor_set__author')
 
 
 class AuthorListView(generic.ListView):
@@ -46,3 +49,4 @@ class AuthorListView(generic.ListView):
 
 class AuthorDetailView(generic.DetailView):
     model = Author
+    queryset = Author.objects.prefetch_related('books')
