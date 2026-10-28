@@ -1,0 +1,6 @@
+# Count Django templates as HTML+Django instead of plain HTML
+*.html linguist-language=HTML+Django
+
+# TOML and Markdown are excluded from the language bar by default
+pyproject.toml linguist-detectable=true
+*.md linguist-detectable=true
