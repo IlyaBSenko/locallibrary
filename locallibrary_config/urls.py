@@ -25,10 +25,13 @@ urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
 
-# locallibrary_config/urls.py
-# (after the existing catalog block)
 urlpatterns += [
     path('chat/', include('chat.urls')),
+]
+
+# django-allauth urls (login, logout, sign-up, password management)
+urlpatterns += [
+    path('accounts/', include('allauth.urls')),
 ]
 
 from django.views.generic import RedirectView
